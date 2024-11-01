@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import DashboardView from "./views/DashboardView";
-import AppLayout from "./layouts/AppLayout";
+import DashboardView from "@/views/DashboardView";
+import AppLayout from "@/layouts/AppLayout";
 
 const Router = () => {
   return (
