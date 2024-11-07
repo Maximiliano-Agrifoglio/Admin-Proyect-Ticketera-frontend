@@ -1,18 +1,19 @@
 import { Link } from "react-router-dom"
 import { useForm } from "react-hook-form"
 import ProjectForm from "@/components/projects/ProjectForm"
+import { ProjectFormData } from "types"
 
 const CreateProjectView = () => {
 
-    const initialValues = {
+    const initialValues : ProjectFormData = {
           projectName: "",
           clientName: "",
           description: ""
     }
     const { register, handleSubmit, formState: { errors } } = useForm({ defaultValues: initialValues})
 
-    const handleForm = () => {
-
+    const handleForm = (data : ProjectFormData) => {
+        
     }
     return (
         
