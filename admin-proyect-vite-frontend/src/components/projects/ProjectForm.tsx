@@ -57,7 +57,7 @@ export default function ProjectForm({errors, register} : ProjectFormProps) {
                     className="w-full p-3  border border-gray-200"
                     placeholder="Descripción del Proyecto"
                     {...register("description", {
-                        required: "Una descripción del proyecto es obligatoria"
+                        required: "La descripción del proyecto es obligatoria"
                     })}
                 />
 
