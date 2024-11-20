@@ -9,10 +9,19 @@ import { z } from 'zod'
        description: z.string()
 });
 
+const deasboardProjectSchema = z.array(
+      projectSchema.pick({
+            _id: true,
+            projectName: true,
+            clientName: true,
+            description: true,
+      })
+);
+
 type Project = z.infer<typeof projectSchema>
 type ProjectFormData = Pick<Project, 'clientName' | 'projectName' | 'description'>;
 
-export {projectSchema};
+export {projectSchema, deasboardProjectSchema};
 export type { Project, ProjectFormData };
 
 

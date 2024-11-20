@@ -1,5 +1,6 @@
 import { ProjectFormData } from "@/../types/index";
 import api from "@/lib/axios";
+import { deasboardProjectSchema } from "@/types/index";
 
 const createProject  = async (FormData : ProjectFormData) => {
     try {
@@ -10,6 +11,18 @@ const createProject  = async (FormData : ProjectFormData) => {
     }
 };
 
-export default createProject;
+const getProjects = async () => {
+    try {
+        const { data } = await api('/projects');
+        const response = deasboardProjectSchema.safeParse(data);  
+        if (response.success) {
+            return response.data;
+        }           
+    } catch (error) {
+        console.log(`Excepción en getProjects => ${error}`);
+    }
+};
+
+export {createProject,getProjects};
 
 
