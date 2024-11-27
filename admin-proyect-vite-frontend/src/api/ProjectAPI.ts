@@ -1,6 +1,7 @@
 import { ProjectFormData } from "@/../types/index";
 import api from "@/lib/axios";
-import { deasboardProjectSchema } from "@/types/index";
+import { Project, deasboardProjectSchema } from "@/types/index";
+import { isAxiosError } from "axios";
 
 const createProject  = async (FormData : ProjectFormData) => {
     try {
@@ -23,6 +24,17 @@ const getProjects = async () => {
     }
 };
 
-export {createProject,getProjects};
+const getProjectById = async (id : Project['_id']) => {
+    try {
+        const { data } = await api(`/projects/${id}`);
+        return data;
+    } catch (error) {
+        if (isAxiosError(error) && error.response) {
+            throw new Error(error.response.data.error);
+        }
+    }
+};
+
+export {createProject,getProjects,getProjectById};
 
 
