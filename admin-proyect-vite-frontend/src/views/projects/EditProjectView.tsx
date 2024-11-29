@@ -1,23 +1,21 @@
-import { useParams } from "react-router-dom";
+import { useParams, Navigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { getProjectById } from "@/api/ProjectAPI";
+import EditProjectForm from "@/components/projects/EditProjectForm";
 
 const EditProjectView = () => {
     const params = useParams<{projectId: string}>();
     const projectId = params.projectId!;
 
-    const { data, error } = useQuery({
+    const { data, isLoading, isError} = useQuery({
         queryKey: ['editProject', projectId],
         queryFn: () => getProjectById(projectId),
         retry: false,           
     });
-    
-    console.log(data);
-    console.log(error);
 
-    return (
-        <div>EditProjectView</div>
-    );
+    if (isLoading) return 'Cargando'
+    if (isError)  return <Navigate to='/404'/>
+    if (data) return <EditProjectForm data={data} projectId={projectId} />
 };
 
 export default EditProjectView;
