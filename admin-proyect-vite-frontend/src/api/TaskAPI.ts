@@ -23,7 +23,7 @@ const createTask = async ({formData, projectId} : Pick<TaskApi, 'formData' | 'pr
  const getTaskById = async ({ projectId, taskId } : Pick<TaskApi, 'projectId' | 'taskId'>) => {
     try {
         const url = `/projects/${projectId}/tasks/${taskId}`;
-        const data = await api(url);
+        const {data} = await api(url);
         return data;
     } catch (error) {
         if (isAxiosError(error) && error.response) {
@@ -32,4 +32,16 @@ const createTask = async ({formData, projectId} : Pick<TaskApi, 'formData' | 'pr
     }
  };
 
-export {createTask,getTaskById};
+ const updateTaskById = async ({ projectId, taskId, formData } : Pick<TaskApi, 'projectId' | 'taskId' | 'formData'>) => {
+    try {
+        const url = `/projects/${projectId}/tasks/${taskId}`;
+        const {data} = await api.put<string>(url, formData)
+        return data;
+    } catch (error) {
+        if (isAxiosError(error) && error.response) {
+            throw new Error(error.response.data.error);
+        }
+    }
+ };
+
+export {createTask,getTaskById,updateTaskById};
