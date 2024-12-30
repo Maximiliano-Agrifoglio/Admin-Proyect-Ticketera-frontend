@@ -44,4 +44,16 @@ const createTask = async ({formData, projectId} : Pick<TaskApi, 'formData' | 'pr
     }
  };
 
-export {createTask,getTaskById,updateTaskById};
+ const DeleteTaskById = async ({ projectId, taskId } : Pick<TaskApi, 'projectId' | 'taskId'>) => {
+    try {
+        const url = `/projects/${projectId}/tasks/${taskId}`;
+        const {data} = await api.delete<string>(url);
+        return data;
+    } catch (error) {
+        if (isAxiosError(error) && error.response) {
+            throw new Error(error.response.data.error);
+        }
+    }
+ };
+
+export {createTask,getTaskById,updateTaskById,DeleteTaskById};

@@ -1,7 +1,7 @@
 import { getTaskById } from '@/api/TaskAPI';
 import { useQuery } from '@tanstack/react-query';
 import { Navigate, useLocation, useParams } from 'react-router-dom';
-import EditTaskModal from './EditTaskmodal';
+import EditTaskModal from './EditTaskModal';
 
 const EditTaskData = () => {
 
