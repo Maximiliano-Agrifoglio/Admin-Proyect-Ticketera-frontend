@@ -9,7 +9,9 @@ const taskSchema = z.object({
       name: z.string(), 
       description: z.string(), 
       project: z.string(),
-      status: taksStatusSchema 
+      status: taksStatusSchema,
+      createdAt: z.string(),
+      updatedAt: z.string()
 });
 
 type Task = z.infer<typeof taskSchema>
