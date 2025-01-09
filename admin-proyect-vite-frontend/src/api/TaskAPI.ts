@@ -6,6 +6,7 @@ type TaskApi = {
     formData: TaskFormData,
     projectId: Project['_id'],
     taskId: Task['_id']
+    status: Task['status']
 }
 
 const createTask = async ({formData, projectId} : Pick<TaskApi, 'formData' | 'projectId'>)  => {
@@ -59,4 +60,16 @@ const createTask = async ({formData, projectId} : Pick<TaskApi, 'formData' | 'pr
     }
  };
 
-export {createTask,getTaskById,updateTaskById,DeleteTaskById};
+ const updateStatus = async ({ projectId, taskId, status} : Pick<TaskApi, 'projectId' | 'taskId' | 'status'>) => {
+    try {
+        const url = `/projects/${projectId}/tasks/${taskId}/status`;
+        const {data} = await api.patch<string>(url,{status});
+        return data;
+    } catch (error) {
+        if (isAxiosError(error) && error.response) {
+            throw new Error(error.response.data.error);
+        }
+    }
+ };
+
+export {createTask,getTaskById,updateTaskById,DeleteTaskById,updateStatus};

@@ -3,6 +3,7 @@ import { z } from 'zod'
 /** Tasks */
 const taksStatusSchema = z.enum(['pending','onHold','inProgress',
 'underReview','completed']);
+type TaskStatus = z.infer<typeof taksStatusSchema>
 
 const taskSchema = z.object({
       _id: z.string(), 
@@ -38,6 +39,6 @@ type Project = z.infer<typeof projectSchema>
 type ProjectFormData = Pick<Project, 'clientName' | 'projectName' | 'description'>;
 
 export {projectSchema, deasboardProjectSchema,taksStatusSchema,taskSchema};
-export type { Project, ProjectFormData,Task,TaskFormData };
+export type { Project, ProjectFormData,Task,TaskFormData,TaskStatus };
 
 
