@@ -9,6 +9,8 @@ import LoginView from "./views/auth/LoginView";
 import RegisterView from "./views/auth/RegisterView";
 import ConfirmAccountView from "./views/auth/ConfirmAccountView";
 import RequestNewCodeWiew from "./views/auth/RequestNewCodeWiew";
+import ForgotPassword from "./views/auth/ForgotPassword";
+import NewPasswordView from "./views/auth/NewPasswordView";
 
 const Router = () => {
   return (
@@ -27,6 +29,8 @@ const Router = () => {
                     <Route path="/auth/register" element={<RegisterView/>}/>
                     <Route path="/auth/confirm-account" element={<ConfirmAccountView/>}/>
                     <Route path="/auth/request-code" element={<RequestNewCodeWiew/>}/>
+                    <Route path="/auth/forgot-password" element={<ForgotPassword/>}/>
+                    <Route path="/auth/new-password" element={<NewPasswordView/>}/>
                 </Route>
             </Routes>
         </BrowserRouter>
